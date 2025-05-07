@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Untuk Nona Isma</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: url("background-ku.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: #b30059;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow-x: hidden;
+        padding: 20px;
+      }
+      .card {
+        background-color: rgba(255, 240, 245, 0.95);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+        animation: fadeIn 2s ease-in-out;
+        position: relative;
+      }
+      h1 {
+        font-size: 2em;
+        color: #ff3399;
+      }
+      p {
+        font-size: 1.1em;
+        line-height: 1.6em;
+      }
+      button {
+        background-color: #ff99cc;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-size: 1em;
+        color: white;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: 0.3s;
+      }
+      button:hover {
+        background-color: #ff66b2;
+      }
+      #message {
+        display: none;
+        margin-top: 20px;
+        animation: fadeIn 2s ease-in-out;
+      }
+      #closeBtn {
+        display: none;
+        margin-top: 10px;
+        background-color: #ccc;
+        color: #333;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: pink;
+        clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 50% 80%, 20% 100%, 0% 30%);
+        animation: float 5s linear infinite;
+        opacity: 0.8;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) scale(1);
+        }
+        100% {
+          transform: translateY(-10vh) scale(1.5);
+        }
+      }
+      @media (max-width: 600px) {
+        .card {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 1.5em;
+        }
+        p {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Untuk Nona Isma 💌</h1>
+      <button onclick="showMessage()">JANGAN KLIK INI DULU, YANG BAWAH DULU DONGG WK</button>
+      <div id="message">
+        <p>
+          Dalam hidup ini, kita tidak selalu tahu arah pasti. Tapi kita selalu bisa memilih untuk melangkah dengan hati yang tulus dan pikiran yang jernih.<br /><br />
+          Kamu tidak harus selalu kuat. Yang penting, kamu terus melangkah. Setiap perjuanganmu berarti — bukan karena hasilnya, tapi karena kamu terus mencoba.<br /><br />
+          "Strength grows in the moments when you think you can't go on but you keep going anyway."<br /><br />
+          Terima kasih telah menjadi pribadi yang selalu jujur dengan diri sendiri. Kamu memberi makna bahkan di hal-hal sederhana.<br /><br />
+          Salam hangat dari,<br />
+          <strong>Mas Hen 🌿</strong>
+        </p>
+        <button id="closeBtn" onclick="hideMessage()">Tutup</button>
+      </div>
+      <button id="playBtn" onclick="playMusic()">Klik duluu yang ini biar ngga gigit</button>
+    </div>
+
+    <div class="hearts"></div>
+
+    <audio id="bgMusic" loop>
+      <source src="Raim.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      function showMessage() {
+        document.getElementById("message").style.display = "block";
+        document.getElementById("closeBtn").style.display = "inline-block";
+      }
+
+      function hideMessage() {
+        document.getElementById("message").style.display = "none";
+        document.getElementById("closeBtn").style.display = "none";
+      }
+
+      function playMusic() {
+        const audio = document.getElementById("bgMusic");
+        const playBtn = document.getElementById("playBtn");
+        audio
+          .play()
+          .then(() => {
+            playBtn.style.display = "none"; // Sembunyikan tombol jika berhasil
+          })
+          .catch((err) => {
+            console.warn("Autoplay ditolak. Harus klik manual.");
+            playBtn.style.display = "inline-block";
+          });
+      }
+
+      // Coba autoplay saat halaman dimuat
+      window.addEventListener("load", () => {
+        playMusic();
+      });
+
+      // Efek hati melayang
+      const heartsContainer = document.querySelector(".hearts");
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 3 + Math.random() * 5 + "s";
+        heartsContainer.appendChild(heart);
+      }
+    </script>
+  </body>
+</html>
